@@ -9,7 +9,7 @@ static void print_usage(const char *prog) {
 
 int main(int argc, char *argv[])
 {
-    if(argc <2) { print_usafe(argv[0]); return 1;}
+    if(argc <2) { print_usage(argv[0]); return 1;}
     int dry_run = 0, undo_mode = 0;
     const char *target_dir = NULL;
     for (int i=1;i< argc; i++)
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
         else if (strcmp(argv[i],"--help") == 0 || strcmp(argv[i], "-h") == 0) { print_usage(argv[0]); return 0;}
         else target_dir = argv[i];
     }
-    if(!target_dir) { fprintf(stderr, "Error: No directory specified.\n"); printf_usage(argv[0]); return 1;}
+    if(!target_dir) { fprintf(stderr, "Error: No directory specified.\n"); print_usage(argv[0]); return 1;}
     if(undo_mode) { printf("Undoing last organization in: %s\n", target_dir); return perform_undo(target_dir) == 0? 0: 1;}
 
     static FileEntry entries[MAX_FILES];
