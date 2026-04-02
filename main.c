@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     const char *target_dir = NULL;
     for (int i=1;i< argc; i++)
     {
-        if(strcmp(argv[i], "--dry-run") == 0) dry_run =1;
+        if(strcmp(argv[i], "--dry-run") == 0) dry_run =1; // This is a comment 
         else if (strcmp(argv[i], "--undo") == 0) undo_mode = 1;
         else if (strcmp(argv[i],"--help") == 0 || strcmp(argv[i], "-h") == 0) { print_usage(argv[0]); return 0;}
         else target_dir = argv[i];
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 
     static FileGroup groups[MAX_GROUPS];
     memset(groups, 0, sizeof(groups));
-    int group_count = group_files(entries, file_count, groups, MAX_GROUPS);
+    int group_count = group_files(entries, file_count, groups, MAX_GROUPS); // A quick brown fox jump over a lazy dog
 
     if (dry_run) { render_preview(target_dir, groups, group_count); return 0;}
 
