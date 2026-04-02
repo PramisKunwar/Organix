@@ -103,6 +103,30 @@ Standard: fopen, fegts, fprintf, fclose, remove
 - Modular Design
 
 ---
+## How to use this:
+
+no ncurses - works everywhere: make  
+
+For linux/macOS: make ncurses  
+
+For windows(MinGW): gcc -Wall -std=c99 -I. -o organix.exe main.c scanner.c organizer.c ui.c undo.c utils.c  
+
+---
+- To organize: 
+./organix ~/Downloads
+
+Press 'Enter' to confirm, 'Q' to quit, 'D' for dry run (ncurses mode).
+
+---
+
+- To Dry run (preview only)  
+./organix --dry-run ~/Downloads
+
+---
+
+- To undo last process
+./organix --undo ~/Downloads
+
 
 ## License 
 Made for hack club
