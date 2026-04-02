@@ -1,7 +1,7 @@
 #include "include/organix.h"
 
-#ifndef _WIN32
-f    #include <conio.h>
+#ifdef _WIN32
+   #include <conio.h>
     #define CLEAR_SCREEN system("cls")
 #else
     #define CLEAR_SCREEN system("clear")
@@ -12,19 +12,19 @@ f    #include <conio.h>
 
 int render_tui(const char *dir, FileGroup *groups, int group_count) {
     initscr(); cbreak(); noecho(); keypad(stdscr, TRUE); curs_set(0);
-    init max_y, max_x; getmaxyx(stdscr, max_y, max_x); (void)max_x;
+    int max_y, max_x; getmaxyx(stdscr, max_y, max_x); (void)max_x;
     attron(A_BOLD | A_REVERSE);
-    mvprintw(0,0, "ORGANIZ -Terminal File Organizerr ");
+    mvprintw(0, 0, "ORGANIX -Terminal File Organizer ");
     attroff(A_BOLD | A_REVERSE);
     mvprintw(2,2,"Directory: %s", dir);
     mvprintw(3,2, "-------------------");
     int row = 5, total_files = 0;
-    for (int g = 0;g<group_count && row < max_y -3; g++) {
-        attron(A_BOLD); mvprintw(row++, 2, "%s/(%d files)", groups[g].folder_name, groups[g].count); attroff(A_BOLD);
+    for (int g = 0; g < group_count && row < max_y - 3; g++) {
+        attron(A_BOLD); mvprintw(row++, 2, "%s/ (%d files)", groups[g].folder_name, groups[g].count); attroff(A_BOLD);
         total_files += groups[g].count;
-        for(int f = 0; f < groups[g].count && row < max_y -3; f++)
+        for (int f = 0; f < groups[g].count && row < max_y - 3; f++)
             mvprintw(row++, 6, "- %s", groups[g].files[f].name);
-            row++;
+        row++;
     }
     attron(A_BOLD); mvprintw(max_y -3, 2, "Total: %d files in %d groups ", total_files, group_count); attroff(A_BOLD);
     attron(A_REVERSE); mvprintw(max_y -1, 0, "[Enter] Organize     [Q] Quit     [D] Dry Run "); attroff(A_REVERSE);

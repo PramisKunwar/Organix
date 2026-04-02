@@ -6,10 +6,11 @@ int save_undo_log(const char *base_dir, MoveRecord *records, int count) {
     path_join(log_path, MAX_PATH_LEN, base_dir, UNDO_LOG_FILE);
     FILE *fp = fopen(log_path,"w");
     if (!fp) { perror("Failed to create undo log"); return -1;}
-    for(int i=0; i< count; i++)
-        fprintf(fp,"%s -> %s\n",records[i].original_path, records[i].new_path);
-        fclose(fp);
-        return 0;
+  for(int i = 0; i < count; i++) {
+    fprintf(fp, "%s -> %s\n", records[i].original_path, records[i].new_path);
+  }
+fclose(fp);
+return 0;
 }
 
   int perform_undo(const char *base_dir) {
@@ -21,7 +22,7 @@ int save_undo_log(const char *base_dir, MoveRecord *records, int count) {
     int restored = 0, failed = 0;
     while( fgets(line, sizeof(line), fp)){
         line[strcspn(line, "\n")] = '\0';
-        char *arrow = strstr(line, " ->");
+        char *arrow = strstr(line, " -> ");
         if(!arrow) continue;
         *arrow = '\0';
         if (rename(arrow + 4, line) == 0) restored++; else { fprintf(stderr, "Failed to restore: %s\n", arrow+4); failed++;}
