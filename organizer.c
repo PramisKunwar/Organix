@@ -12,12 +12,12 @@ static CategoryMap categories[] ={
 #define NUM_CATEGORIES (sizeof(categories) / sizeof(categories[0]))
 
 const char *get_category(const char *extension) {
-    if(!extension || extension[0] == '\0') return "Others";
-    for(size_t i = 0; i< NUM_CATEGORIES; i++)
-        for (int j=0;j<categories[i].ext_count;j++)
-            if (strcmp(extension, categories[i].extensions[j]) ==0)
+    if (!extension || extension[0] == '\0') return "Others";
+    for (size_t i = 0; i < NUM_CATEGORIES; i++)
+        for (int j = 0; j < categories[i].ext_count; j++)
+            if (strcmp(extension, categories[i].extensions[j]) == 0)
                 return categories[i].folder;
-        return "Others";
+    return "Others";
 }
 
  int group_files(FileEntry *entries, int count, FileGroup *groups, int max_groups){
