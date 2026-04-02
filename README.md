@@ -1,6 +1,17 @@
 # Organix  
 Organix is a terminal-based file organizer written in C. It scans a directory and sorts file into subfolders based on their extension (i.e. Images, Documents, Vidoes, Audio, Archives, Others). It provides an interactive preview (TUI) before moving files, supports a dry-run mode and includes an undo feature.
 
+---
+![Screenshot 1](/ORGANIX.png)
+
+---
+![Screenshot 2](/ORGANIX1.png)
+
+---
+![Screenshot 3](/ORGANIX2.png)
+
+---
+
 
 ## Program flow (main.c)
 --dry-run ==> show a preview with render_preview() and exit.  
@@ -10,6 +21,8 @@ if user confirms- move files with move_files(), save an undo log with save_undo_
 
 scan the directory using scan_directory()  
 group files by category using group_files()  
+
+---
 
 ## core concepts used:
 - Basics
@@ -22,6 +35,8 @@ group files by category using group_files()
 - Command-line arguments
 - Modular programming
 - Makerfiles
+
+---
 
 ## Code structure:
 
@@ -63,6 +78,8 @@ is_hidden_file()
 
 path_join()
 
+---
+
 ## Key C features used in the project 
 
 - Preprocessor Macros
@@ -84,6 +101,8 @@ Standard: fopen, fegts, fprintf, fclose, remove
 - Error Handling
 
 - Modular Design
+
+---
 
 ## License 
 Made for hack club
