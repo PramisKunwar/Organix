@@ -34,8 +34,8 @@ int scan_directory(const char *path, FileEntry *entries, int max_entries){
         path_join(full, MAX_PATH_LEN, path, ent->d_name);
         struct stat st;
         if(stat(full, &st) != 0 || !S_ISREG(st.st_mode)) continue;
-        strncpy(entries[count].name, ent->_name, MAX_NAME -1);
-        get_extension(ent->_name, entries[count].extension, MAX_EXT);
+        strncpy(entries[count].name, ent->d_name, MAX_NAME -1);
+        get_extension(ent->d_name, entries[count].extension, MAX_EXT);
         strncpy(entries[count].full_path, full, MAX_PATH_LEN -1);
         count++;
     }
